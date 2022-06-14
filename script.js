@@ -31,6 +31,12 @@ let secondNum = [];
 num.forEach((key) => {
   key.addEventListener('click', () => {
     const number = parseInt(key.textContent);
+    
+     //check if user trying to start a new operation
+    if (displayValue.length === 0){
+      clear.click();
+    };
+
     displayValue.push(number);
     display.textContent = displayValue.join().replace(/,/g, '');
   });
@@ -62,7 +68,7 @@ operators.forEach((key) => {
       displayValue.push(` ${operator} `);
       display.textContent = displayValue.join().replace(/,/g, '');
     };
-    
+
   });
 });
 
@@ -74,8 +80,14 @@ equal.addEventListener('click', () => {
     firstNum = parseInt(displayValue.splice(0, displayValue.indexOf(` ${currentOperator} `)).join().replace(/,/g, ''));
     secondNum = parseInt(displayValue.splice(1).join().replace(/,/g, ''));
     let total = operate(operatorFunction, firstNum, secondNum);
+
+    if (total.toString().length >13) {
+      displayTotal.textContent = total.toFixed(13);
+    } else{
+      displayTotal.textContent = total;
+    } 
+
     displayValue = [];
-    displayTotal.textContent = total.toFixed(14);
   };
 
   secondNum = displayValue.splice(0, displayValue.indexOf(` ${currentOperator} `));
@@ -101,7 +113,6 @@ clear.addEventListener('click', () => {
 
 });
 
-//Errors
 
 
 
