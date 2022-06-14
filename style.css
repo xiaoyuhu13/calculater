@@ -8,7 +8,8 @@ body{
 p{
     font-family: 'Inconsolata', monospace;
     font-size: 16pt;
-    font-style: medium;
+    font-weight: 700;
+    color: rgb(39, 39, 39);
 }
 
 .calculator-wrapper{
@@ -32,13 +33,19 @@ p{
     border-radius: 10px;
     margin-bottom: 12px;
     border: 2px solid #d6ce93;
+    text-align: right;
 }
 
 .display p{
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-    margin-right: 16px;
+    margin: 6px 16px 12px 0px;
+}
+
+#display-num{
+    font-size: 14pt;
+    font-weight: 400;
+}
+#total{
+    font-size: 24pt;
 }
 
 .keypad{
