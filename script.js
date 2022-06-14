@@ -55,7 +55,13 @@ operators.forEach((key) => {
     display.textContent = displayValue.join().replace(/,/g, '');
 
     //check if there's already a total in display
-    
+    if (displayTotal.textContent != ""){
+      displayValue = [];
+      firstNum = parseInt(displayTotal.textContent);
+      displayValue.push(firstNum);
+      displayValue.push(` ${operator} `);
+      display.textContent = displayValue.join().replace(/,/g, '');
+    };
     
   });
 });
@@ -64,12 +70,22 @@ const equal = document.getElementById('equal')
 const displayTotal = document.getElementById('total');
 
 equal.addEventListener('click', () => {
-  firstNum = parseInt(displayValue.splice(0, displayValue.indexOf(` ${currentOperator} `)).join().replace(/,/g, ''));
-  secondNum = parseInt(displayValue.splice(1).join().replace(/,/g, ''));
-  let total = operate(operatorFunction, firstNum, secondNum);
-  displayValue = [];
-  displayTotal.textContent = total;
+  if (firstNum = []){
+    firstNum = parseInt(displayValue.splice(0, displayValue.indexOf(` ${currentOperator} `)).join().replace(/,/g, ''));
+    secondNum = parseInt(displayValue.splice(1).join().replace(/,/g, ''));
+    let total = operate(operatorFunction, firstNum, secondNum);
+    displayValue = [];
+    displayTotal.textContent = total.toFixed(14);
+  };
 
+  secondNum = displayValue.splice(0, displayValue.indexOf(` ${currentOperator} `));
+  secondNum = parseInt(secondNum.splice(0,1).join().replace(/,/g, ''))
+
+  
+  if (displayTotal.textContent === 'Infinity') {
+    alert('Silly goose! You can\'t divide by 0 :(');
+    clear.click();
+  }
 }
 );
 
@@ -84,6 +100,9 @@ clear.addEventListener('click', () => {
   displayTotal.textContent = "";
 
 });
+
+//Errors
+
 
 
   
