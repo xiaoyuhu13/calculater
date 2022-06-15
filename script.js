@@ -69,6 +69,16 @@ operators.forEach((key) => {
       display.textContent = displayValue.join().replace(/,/g, '');
     };
 
+    //prevent user from inputing 2 operators in a row
+    let cloneDisplayValue = [...displayValue];
+    let lastInput = cloneDisplayValue.pop();
+    let lastLastInput = cloneDisplayValue.pop();
+    let operatorArray = [' + ', ' - ', ' x ', ' ÷ ']
+    if (operatorArray.includes(lastInput) && operatorArray.includes(lastLastInput)){
+      displayValue.pop();
+      display.textContent = displayValue.join().replace(/,/g, '');
+    }
+
   });
 });
 
